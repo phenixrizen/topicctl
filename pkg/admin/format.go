@@ -11,7 +11,7 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/olekukonko/tablewriter"
-	"github.com/segmentio/topicctl/pkg/util"
+	"github.com/phenixrizen/topicctl/pkg/util"
 )
 
 // FormatBrokers creates a pretty table from a list of brokers.

@@ -7,8 +7,8 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/hashicorp/go-multierror"
-	"github.com/segmentio/topicctl/pkg/admin"
-	"github.com/segmentio/topicctl/pkg/config"
+	"github.com/phenixrizen/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/config"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )

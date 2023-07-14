@@ -1,4 +1,4 @@
-module github.com/segmentio/topicctl
+module github.com/phenixrizen/topicctl
 
 go 1.18
 

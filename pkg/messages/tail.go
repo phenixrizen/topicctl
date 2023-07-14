@@ -10,9 +10,9 @@ import (
 	"unicode/utf8"
 
 	"github.com/fatih/color"
+	"github.com/phenixrizen/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/util"
 	"github.com/segmentio/kafka-go"
-	"github.com/segmentio/topicctl/pkg/admin"
-	"github.com/segmentio/topicctl/pkg/util"
 	log "github.com/sirupsen/logrus"
 
 	// Read snappy-compressed messages

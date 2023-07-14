@@ -6,7 +6,7 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/olekukonko/tablewriter"
-	"github.com/segmentio/topicctl/pkg/util"
+	"github.com/phenixrizen/topicctl/pkg/util"
 )
 
 // FormatResults generates a pretty table from topic check results.

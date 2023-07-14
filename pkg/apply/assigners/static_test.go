@@ -3,7 +3,7 @@ package assigners
 import (
 	"testing"
 
-	"github.com/segmentio/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/admin"
 )
 
 func TestStaticAssigner(t *testing.T) {

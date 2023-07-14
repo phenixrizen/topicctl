@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/segmentio/topicctl/pkg/version"
+	"github.com/phenixrizen/topicctl/pkg/version"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	prefixed "github.com/x-cray/logrus-prefixed-formatter"

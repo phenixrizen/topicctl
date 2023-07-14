@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/segmentio/topicctl/pkg/cli"
+	"github.com/phenixrizen/topicctl/pkg/cli"
 	"github.com/spf13/cobra"
 )
 

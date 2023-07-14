@@ -14,12 +14,12 @@ import (
 
 	"github.com/briandowns/spinner"
 	"github.com/fatih/color"
-	"github.com/segmentio/topicctl/pkg/admin"
-	"github.com/segmentio/topicctl/pkg/apply"
-	"github.com/segmentio/topicctl/pkg/check"
-	"github.com/segmentio/topicctl/pkg/config"
-	"github.com/segmentio/topicctl/pkg/groups"
-	"github.com/segmentio/topicctl/pkg/messages"
+	"github.com/phenixrizen/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/apply"
+	"github.com/phenixrizen/topicctl/pkg/check"
+	"github.com/phenixrizen/topicctl/pkg/config"
+	"github.com/phenixrizen/topicctl/pkg/groups"
+	"github.com/phenixrizen/topicctl/pkg/messages"
 	log "github.com/sirupsen/logrus"
 )
 

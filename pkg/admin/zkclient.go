@@ -13,9 +13,9 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/phenixrizen/topicctl/pkg/util"
+	"github.com/phenixrizen/topicctl/pkg/zk"
 	"github.com/segmentio/kafka-go"
-	"github.com/segmentio/topicctl/pkg/util"
-	"github.com/segmentio/topicctl/pkg/zk"
 	log "github.com/sirupsen/logrus"
 )
 

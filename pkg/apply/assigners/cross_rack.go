@@ -2,8 +2,8 @@ package assigners
 
 import (
 	"fmt"
-	"github.com/segmentio/topicctl/pkg/admin"
-	"github.com/segmentio/topicctl/pkg/apply/pickers"
+	"github.com/phenixrizen/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/apply/pickers"
 	"sort"
 )
 
@@ -13,16 +13,18 @@ import (
 // https://segment.atlassian.net/browse/DRES-922?focusedCommentId=237288
 //
 // for each partition:
-//   for each non-leader replica:
-//     if replica is in same rack as leader:
-//       change replica to a placeholder (-1)
+//
+//	for each non-leader replica:
+//	  if replica is in same rack as leader:
+//	    change replica to a placeholder (-1)
 //
 // then:
 //
 // for each partition:
-//   for each non-leader replica:
-//     if replica is set to placeholder:
-//       use picker to replace it with a broker in a different rack than the leader and any other replicas
+//
+//	for each non-leader replica:
+//	  if replica is set to placeholder:
+//	    use picker to replace it with a broker in a different rack than the leader and any other replicas
 //
 // Note that this assigner doesn't make any leader changes. Thus, the assignments
 // need to already be leader balanced before we make the changes with this assigner.

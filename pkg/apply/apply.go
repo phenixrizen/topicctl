@@ -11,15 +11,15 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/hashicorp/go-multierror"
+	"github.com/phenixrizen/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/apply/assigners"
+	"github.com/phenixrizen/topicctl/pkg/apply/extenders"
+	"github.com/phenixrizen/topicctl/pkg/apply/pickers"
+	"github.com/phenixrizen/topicctl/pkg/apply/rebalancers"
+	"github.com/phenixrizen/topicctl/pkg/config"
+	"github.com/phenixrizen/topicctl/pkg/util"
+	"github.com/phenixrizen/topicctl/pkg/zk"
 	"github.com/segmentio/kafka-go"
-	"github.com/segmentio/topicctl/pkg/admin"
-	"github.com/segmentio/topicctl/pkg/apply/assigners"
-	"github.com/segmentio/topicctl/pkg/apply/extenders"
-	"github.com/segmentio/topicctl/pkg/apply/pickers"
-	"github.com/segmentio/topicctl/pkg/apply/rebalancers"
-	"github.com/segmentio/topicctl/pkg/config"
-	"github.com/segmentio/topicctl/pkg/util"
-	"github.com/segmentio/topicctl/pkg/zk"
 	log "github.com/sirupsen/logrus"
 )
 

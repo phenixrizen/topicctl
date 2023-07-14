@@ -4,13 +4,16 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 
+	"github.com/google/uuid"
+	"github.com/phenixrizen/topicctl/pkg/apply"
 	"github.com/segmentio/kafka-go"
-	"github.com/segmentio/topicctl/pkg/apply"
+	"github.com/segmentio/kafka-go/protocol"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
@@ -26,6 +29,7 @@ type testerCmdConfig struct {
 	mode         string
 	readConsumer string
 	topic        string
+	file         string
 	writeRate    int
 
 	shared sharedOptions
@@ -51,6 +55,12 @@ func init() {
 		"topic",
 		"",
 		"Topic to write to",
+	)
+	testerCmd.Flags().StringVar(
+		&testerConfig.file,
+		"file",
+		"",
+		"File to use for message body",
 	)
 	testerCmd.Flags().IntVar(
 		&testerConfig.writeRate,
@@ -176,6 +186,16 @@ func runTestWriter(ctx context.Context) error {
 	sendTicker := time.NewTicker(tickDuration)
 	logTicker := time.NewTicker(5 * time.Second)
 
+	// reade the file into memory
+	var fileContents []byte
+	if testerConfig.file != "" {
+		var err error
+		fileContents, err = ioutil.ReadFile(testerConfig.file)
+		if err != nil {
+			return err
+		}
+	}
+
 	log.Info("Starting write loop")
 
 	for {
@@ -186,8 +206,26 @@ func runTestWriter(ctx context.Context) error {
 			err := writer.WriteMessages(
 				ctx,
 				kafka.Message{
-					Key:   []byte(fmt.Sprintf("msg_%d", index)),
-					Value: []byte(fmt.Sprintf("Contents of test message %d", index)),
+					Key: []byte(uuid.New().String()),
+					Headers: []kafka.Header{
+						protocol.Header{
+							Key:   "schema",
+							Value: []byte("rocky-eval-schema"),
+						},
+						protocol.Header{
+							Key:   "workspace_id",
+							Value: []byte(uuid.New().String()),
+						},
+						protocol.Header{
+							Key:   "connector_id",
+							Value: []byte(uuid.New().String()),
+						},
+						protocol.Header{
+							Key:   "claim_id",
+							Value: []byte(uuid.New().String()),
+						},
+					},
+					Value: fileContents,
 				},
 			)
 			if err != nil {

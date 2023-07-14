@@ -6,8 +6,8 @@ import (
 
 	"github.com/ghodss/yaml"
 	"github.com/hashicorp/go-multierror"
+	"github.com/phenixrizen/topicctl/pkg/admin"
 	"github.com/segmentio/kafka-go"
-	"github.com/segmentio/topicctl/pkg/admin"
 	log "github.com/sirupsen/logrus"
 )
 

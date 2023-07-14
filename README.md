@@ -1,5 +1,5 @@
-![GitHub Actions](https://github.com/segmentio/topicctl/actions/workflows/ci.yml/badge.svg)
-[![Go Report Card](https://goreportcard.com/badge/github.com/segmentio/topicctl)](https://goreportcard.com/report/github.com/segmentio/topicctl)
+![GitHub Actions](https://github.com/phenixrizen/topicctl/actions/workflows/ci.yml/badge.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/phenixrizen/topicctl)](https://goreportcard.com/report/github.com/phenixrizen/topicctl)
 
 # topicctl
 
@@ -35,7 +35,7 @@ want to take advantage of these new features; see the [clusters section below](#
 details on the latest config format.
 
 The code for the old version has been preserved in the
-[v0 branch](https://github.com/segmentio/topicctl/tree/v0) if you run into problems and need to
+[v0 branch](https://github.com/phenixrizen/topicctl/tree/v0) if you run into problems and need to
 revert.
 
 ## Related projects
@@ -49,7 +49,7 @@ that makes it easy to tail and summarize structured data in Kafka.
 
 Either:
 
-1. Run `go install github.com/segmentio/topicctl/cmd/topicctl@latest`
+1. Run `go install github.com/phenixrizen/topicctl/cmd/topicctl@latest`
 2. Clone this repo and run `make install` in the repo root
 3. Use the Docker image: `docker pull segment/topicctl`
 
@@ -103,8 +103,8 @@ tail topic-default
 ```
 
 7. Increase the number of partitions in the `topic-default` topic by changing the `partitions: ...`
-value in
-[topic-default.yaml](https://github.com/segmentio/topicctl/blob/master/examples/local-cluster/topics/topic-default.yaml#L10) to `9` and re-applying:
+   value in
+   [topic-default.yaml](https://github.com/phenixrizen/topicctl/blob/master/examples/local-cluster/topics/topic-default.yaml#L10) to `9` and re-applying:
 
 ```
 topicctl apply examples/local-cluster/topics/topic-default.yaml
@@ -163,17 +163,17 @@ topicctl get [flags] [operation]
 The `get` subcommand lists out the instances and/or details of a particular
 resource type in the cluster. Currently, the following operations are supported:
 
-| Subcommand      | Description |
-| --------- | ----------- |
+| Subcommand                     | Description                                                            |
+| ------------------------------ | ---------------------------------------------------------------------- |
 | `get balance [optional topic]` | Number of replicas per broker position for topic or cluster as a whole |
-| `get brokers` | All brokers in the cluster |
-| `get config [broker or topic]` | Config key/value pairs for a broker or topic |
-| `get groups` | All consumer groups in the cluster |
-| `get lags [topic] [group]` | Lag for each topic partition for a consumer group |
-| `get members [group]` | Details of each member in a consumer group |
-| `get partitions [topic]` | All partitions in a topic |
-| `get offsets [topic]` | Number of messages per partition along with start and end times |
-| `get topics` | All topics in the cluster |
+| `get brokers`                  | All brokers in the cluster                                             |
+| `get config [broker or topic]` | Config key/value pairs for a broker or topic                           |
+| `get groups`                   | All consumer groups in the cluster                                     |
+| `get lags [topic] [group]`     | Lag for each topic partition for a consumer group                      |
+| `get members [group]`          | Details of each member in a consumer group                             |
+| `get partitions [topic]`       | All partitions in a topic                                              |
+| `get offsets [topic]`          | Number of messages per partition along with start and end times        |
+| `get topics`                   | All topics in the cluster                                              |
 
 #### rebalance
 
@@ -208,8 +208,6 @@ The `reset-offsets` subcommand allows resetting the offsets for a consumer group
 
 2. Use `--partition-offset-map` flag to specify a detailed offset configuration for individual partitions. For example, `1=5,2=10,7=12,...` means that the consumer group offset for partition 1 must be set to 5, partition 2 to offset 10, partition 7 to offset 12 and so on. This approach provides greater flexibility and fine-grained control for this operation. Note that `--partition-offset-map` flag is standalone and cannot be coupled with any of the previous flags.
 
-
-
 #### tail
 
 ```
@@ -234,8 +232,8 @@ only.
 There are three ways to specify a target cluster in the `topicctl` subcommands:
 
 1. `--cluster-config=[path]`, where the refererenced path is a cluster configuration
-  in the format expected by the `apply` command described above,
-2. `--zk-addr=[zookeeper address]` and `--zk-prefix=[optional prefix for cluster in zookeeper]`, *or*
+   in the format expected by the `apply` command described above,
+2. `--zk-addr=[zookeeper address]` and `--zk-prefix=[optional prefix for cluster in zookeeper]`, _or_
 3. `--broker-addr=[bootstrap broker address]`
 
 All subcommands support the `cluster-config` pattern. The last two are also supported
@@ -267,42 +265,44 @@ The following shows an annotated example:
 
 ```yaml
 meta:
-  name: my-cluster                      # Name of the cluster
-  environment: stage                    # Cluster environment
-  region: us-west-2                     # Cloud region of the cluster
-  shard: 1                              # Shard index of this cluster, if it is sharded.
-  description: |                        # A free-text description of the cluster (optional)
+  name: my-cluster # Name of the cluster
+  environment: stage # Cluster environment
+  region: us-west-2 # Cloud region of the cluster
+  shard: 1 # Shard index of this cluster, if it is sharded.
+  description: | # A free-text description of the cluster (optional)
     Test cluster for topicctl.
 
 spec:
-  bootstrapAddrs:                       # One or more broker bootstrap addresses
+  bootstrapAddrs: # One or more broker bootstrap addresses
     - my-cluster.example.com:9092
-  clusterID: abc-123-xyz                # Expected cluster ID for cluster (optional,
-                                        # used as safety check only)
+  clusterID:
+    abc-123-xyz # Expected cluster ID for cluster (optional,
+    # used as safety check only)
 
   # ZooKeeper access settings (only required for pre-v2 clusters; leave off to force exclusive use
   # of broker APIs)
-  zkAddrs:                              # One or more cluster zookeeper addresses; if these are
-    - zk.example.com:2181               # omitted, then the cluster will only be accessed via
-                                        # broker APIs; see the section below on cluster access for
-                                        # more details.
-  zkPrefix: my-cluster                  # Prefix for zookeeper nodes if using zookeeper access
-  zkLockPath: /topicctl/locks           # Path used for apply locks (optional)
+  zkAddrs: # One or more cluster zookeeper addresses; if these are
+    - zk.example.com:2181 # omitted, then the cluster will only be accessed via
+      # broker APIs; see the section below on cluster access for
+      # more details.
+  zkPrefix: my-cluster # Prefix for zookeeper nodes if using zookeeper access
+  zkLockPath: /topicctl/locks # Path used for apply locks (optional)
 
   # TLS/SSL settings (optional, not supported if using ZooKeeper)
   tls:
-    enabled: true                       # Whether TLS is enabled
-    caCertPath: path/to/ca.crt          # Path to CA cert to be used (optional)
-    certPath: path/to/client.crt        # Path to client cert to be used (optional)
-    keyPath: path/to/client.key         # Path to client key to be used (optional)
+    enabled: true # Whether TLS is enabled
+    caCertPath: path/to/ca.crt # Path to CA cert to be used (optional)
+    certPath: path/to/client.crt # Path to client cert to be used (optional)
+    keyPath: path/to/client.key # Path to client key to be used (optional)
 
   # SASL settings (optional, not supported if using ZooKeeper)
   sasl:
-    enabled: true                       # Whether SASL is enabled
-    mechanism: SCRAM-SHA-512            # Mechanism to use; choices are AWS-MSK-IAM, PLAIN,
-                                        # SCRAM-SHA-256, and SCRAM-SHA-512
-    username: my-username               # SASL username; ignored for AWS-MSK-IAM
-    password: my-password               # SASL password; ignored for AWS-MSK-IAM
+    enabled: true # Whether SASL is enabled
+    mechanism:
+      SCRAM-SHA-512 # Mechanism to use; choices are AWS-MSK-IAM, PLAIN,
+      # SCRAM-SHA-256, and SCRAM-SHA-512
+    username: my-username # SASL username; ignored for AWS-MSK-IAM
+    password: my-password # SASL password; ignored for AWS-MSK-IAM
 ```
 
 Note that the `name`, `environment`, `region`, and `description` fields are used
@@ -322,24 +322,24 @@ annotated example:
 
 ```yaml
 meta:
-  name: topics-test                     # Name of the topic
-  cluster: my-cluster                   # Name of the cluster
-  environment: stage                    # Environment of the cluster
-  region: us-west-2                     # Region of the cluster
-  description: |                        # Free-text description of the topic (optional)
+  name: topics-test # Name of the topic
+  cluster: my-cluster # Name of the cluster
+  environment: stage # Environment of the cluster
+  region: us-west-2 # Region of the cluster
+  description: | # Free-text description of the topic (optional)
     Test topic in my-cluster.
-  labels:                               # Custom key-value pairs purposed for topic bookkeeping (optional)
+  labels: # Custom key-value pairs purposed for topic bookkeeping (optional)
     key1: value1
     key2: value2
 
 spec:
-  partitions: 9                         # Number of topic partitions
-  replicationFactor: 3                  # Replication factor per partition
-  retentionMinutes: 360                 # Number of minutes to retain messages (optional)
+  partitions: 9 # Number of topic partitions
+  replicationFactor: 3 # Replication factor per partition
+  retentionMinutes: 360 # Number of minutes to retain messages (optional)
   placement:
-    strategy: in-zone                   # Placement strategy, see info below
-    picker: randomized                  # Picker method, see info below (optional)
-  settings:                             # Miscellaneous other config settings (optional)
+    strategy: in-zone # Placement strategy, see info below
+    picker: randomized # Picker method, see info below (optional)
+  settings: # Miscellaneous other config settings (optional)
     cleanup.policy: delete
     max.message.bytes: 5242880
 ```
@@ -360,14 +360,14 @@ that they reference the same cluster.
 
 The tool supports the following per-partition, replica placement strategies:
 
-| Strategy     | Description |
-| --------- | ----------- |
-| `any` | Allow any replica placement |
-| `balanced-leaders` | Ensure that the leaders of each partition are evenly distributed across the broker racks  |
-| `in-rack` | Ensure that the followers for each partition are in the same rack as the leader; generally this is done when the leaders are already balanced, but this isn't required |
-| `cross-rack` | Ensure that the replicas for each partition are all in different racks; generally this is done when the leaders are already balanced, but this isn't required |
-| `static` | Specify the placement manually, via an extra `staticAssignments` field. ([example](examples/local-cluster/topics/topic-static.yaml)) |
-| `static-in-rack` | Specify the rack placement per partition manually, via an extra `staticRackAssignments` field ([example](examples/local-cluster/topics/topic-static-in-rack.yaml))|
+| Strategy           | Description                                                                                                                                                            |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `any`              | Allow any replica placement                                                                                                                                            |
+| `balanced-leaders` | Ensure that the leaders of each partition are evenly distributed across the broker racks                                                                               |
+| `in-rack`          | Ensure that the followers for each partition are in the same rack as the leader; generally this is done when the leaders are already balanced, but this isn't required |
+| `cross-rack`       | Ensure that the replicas for each partition are all in different racks; generally this is done when the leaders are already balanced, but this isn't required          |
+| `static`           | Specify the placement manually, via an extra `staticAssignments` field. ([example](examples/local-cluster/topics/topic-static.yaml))                                   |
+| `static-in-rack`   | Specify the rack placement per partition manually, via an extra `staticRackAssignments` field ([example](examples/local-cluster/topics/topic-static-in-rack.yaml))     |
 
 #### Picker methods
 
@@ -377,11 +377,11 @@ partition.
 
 Currently, `topicctl` supports the following methods for this replica "picking" process:
 
-| Method     | Description |
-| --------- | ----------- |
-| `cluster-use` | Pick based on broker frequency in the topic, then break ties by looking at the frequency of each broker across all topics in the cluster |
-| `lowest-index` | Pick based on broker frequency in the topic, then break ties by choosing the lowest-index broker |
-| `randomized` | Pick based on broker frequency in the topic, then break ties randomly. The underlying random generator uses a consistent seed (generated from the topic name, partition, and index), so the choice won't vary between apply runs.|
+| Method         | Description                                                                                                                                                                                                                       |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cluster-use`  | Pick based on broker frequency in the topic, then break ties by looking at the frequency of each broker across all topics in the cluster                                                                                          |
+| `lowest-index` | Pick based on broker frequency in the topic, then break ties by choosing the lowest-index broker                                                                                                                                  |
+| `randomized`   | Pick based on broker frequency in the topic, then break ties randomly. The underlying random generator uses a consistent seed (generated from the topic name, partition, and index), so the choice won't vary between apply runs. |
 
 If no picking method is set in the topic config, then `randomized` is used by default.
 
@@ -406,7 +406,7 @@ generally shouldn't be necessary unless the topic started off in an imbalanced s
 has been a change in the number of brokers.
 
 To rebalance **all** topics in a cluster, use the `rebalance` subcommand, which will perform the `apply --rebalance`
-function on all qualifying topics. It will inventory all topic configs found at  `--path-prefix` for a cluster
+function on all qualifying topics. It will inventory all topic configs found at `--path-prefix` for a cluster
 specified by `--cluster-config`.
 
 This subcommand will not rebalance a topic if:
@@ -430,11 +430,11 @@ The `apply` subcommand can make changes, but under the following conditions:
 5. Partition changes in apply runs are locked on a per-cluster basis
 6. Leader changes in apply runs are locked on a per-topic basis
 7. Partition replica migrations are protected via
-  ["throttles"](https://kafka.apache.org/0101/documentation.html#rep-throttle)
-  to prevent the cluster network from getting overwhelmed
+   ["throttles"](https://kafka.apache.org/0101/documentation.html#rep-throttle)
+   to prevent the cluster network from getting overwhelmed
 8. Before applying, the tool checks the cluster ID against the expected value in the
-  cluster config. This can help prevent errors around applying in the wrong cluster when multiple
-  clusters are accessed through the same address, e.g `localhost:2181`.
+   cluster config. This can help prevent errors around applying in the wrong cluster when multiple
+   clusters are accessed through the same address, e.g `localhost:2181`.
 
 The `reset-offsets` command can also make changes in the cluster and should be used carefully.
 
@@ -461,7 +461,7 @@ directly.
 
 Broker APIs are used exclusively if the tool is run with either of the following flags:
 
-1. `--broker-addr` *or*
+1. `--broker-addr` _or_
 2. `--cluster-config` and the cluster config doesn't specify any ZK addresses
 
 We recommend using this "broker only" access mode for all clusters running Kafka versions >= 2.4.
@@ -483,18 +483,18 @@ This "mixed" mode is required for clusters running Kafka versions < 2.0.
 There are a few limitations in the tool when using the broker APIs exclusively:
 
 1. Only newer versions of Kafka are supported. In particular:
-    - v2.0 or greater is required for read-only operations (`get brokers`, `get topics`, etc.)
-    - v2.4 or greater is required for applying topic changes
+   - v2.0 or greater is required for read-only operations (`get brokers`, `get topics`, etc.)
+   - v2.4 or greater is required for applying topic changes
 2. Apply locking is not yet implemented; please be careful when applying to ensure that someone
-  else isn't applying changes in the same topic at the same time.
+   else isn't applying changes in the same topic at the same time.
 3. The values of some dynamic broker properties, e.g. `leader.replication.throttled.rate`, are
-  marked as "sensitive" and not returned via the API; `topicctl` will show the value as
-  `SENSITIVE`. This appears to be fixed in v2.6.
+   marked as "sensitive" and not returned via the API; `topicctl` will show the value as
+   `SENSITIVE`. This appears to be fixed in v2.6.
 4. Broker timestamps are not returned by the metadata API. These will be blank in the results
-  of `get brokers`.
+   of `get brokers`.
 5. Applying is not fully compatible with clusters provisioned in Confluent Cloud. It appears
-  that Confluent prevents arbitrary partition reassignments, among other restrictions. Read-only
-  operations seem to work.
+   that Confluent prevents arbitrary partition reassignments, among other restrictions. Read-only
+   operations seem to work.
 
 ### TLS
 
@@ -561,6 +561,7 @@ set `--zk-addr=localhost:2181` and leave the `--zk-prefix` flag unset.
 
 To test out `apply`, you can use the configs in `examples/local-cluster/`. For example,
 to create all topics defined for that cluster:
+
 ```
 topicctl apply examples/local-cluster/topics/*.yaml
 ```

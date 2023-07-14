@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/olekukonko/tablewriter"
+	"github.com/phenixrizen/topicctl/pkg/config"
 	"github.com/segmentio/kafka-go"
-	"github.com/segmentio/topicctl/pkg/config"
 	log "github.com/sirupsen/logrus"
 )
 

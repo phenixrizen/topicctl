@@ -1,5 +1,5 @@
 FROM --platform=$BUILDPLATFORM golang:1.19 as builder
-ENV SRC github.com/segmentio/topicctl
+ENV SRC github.com/phenixrizen/topicctl
 ENV CGO_ENABLED=0
 
 ARG VERSION
@@ -14,6 +14,6 @@ RUN cd /go/src/${SRC} && \
 FROM scratch
 
 COPY --from=builder \
-    /go/src/github.com/segmentio/topicctl/build/topicctl \
+    /go/src/github.com/phenixrizen/topicctl/build/topicctl \
     /bin/topicctl
 ENTRYPOINT ["/bin/topicctl"]

@@ -3,9 +3,9 @@ package rebalancers
 import (
 	"testing"
 
-	"github.com/segmentio/topicctl/pkg/admin"
-	"github.com/segmentio/topicctl/pkg/apply/pickers"
-	"github.com/segmentio/topicctl/pkg/config"
+	"github.com/phenixrizen/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/apply/pickers"
+	"github.com/phenixrizen/topicctl/pkg/config"
 	"github.com/stretchr/testify/assert"
 )
 

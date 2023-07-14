@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/segmentio/topicctl/pkg/apply"
-	"github.com/segmentio/topicctl/pkg/config"
-	"github.com/segmentio/topicctl/pkg/util"
+	"github.com/phenixrizen/topicctl/pkg/apply"
+	"github.com/phenixrizen/topicctl/pkg/config"
+	"github.com/phenixrizen/topicctl/pkg/util"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -3,10 +3,10 @@ package extenders
 import (
 	"testing"
 
-	"github.com/segmentio/topicctl/pkg/admin"
-	"github.com/segmentio/topicctl/pkg/apply/assigners"
-	"github.com/segmentio/topicctl/pkg/apply/pickers"
-	"github.com/segmentio/topicctl/pkg/config"
+	"github.com/phenixrizen/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/apply/assigners"
+	"github.com/phenixrizen/topicctl/pkg/apply/pickers"
+	"github.com/phenixrizen/topicctl/pkg/config"
 )
 
 func TestBalancedExtenderCrossRack(t *testing.T) {

@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/segmentio/topicctl/pkg/apply"
-	"github.com/segmentio/topicctl/pkg/cli"
-	"github.com/segmentio/topicctl/pkg/groups"
+	"github.com/phenixrizen/topicctl/pkg/apply"
+	"github.com/phenixrizen/topicctl/pkg/cli"
+	"github.com/phenixrizen/topicctl/pkg/groups"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )

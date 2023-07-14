@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/segmentio/topicctl/pkg/cli"
+	"github.com/phenixrizen/topicctl/pkg/cli"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )

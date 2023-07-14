@@ -6,10 +6,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/phenixrizen/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/config"
+	"github.com/phenixrizen/topicctl/pkg/util"
 	"github.com/segmentio/kafka-go"
-	"github.com/segmentio/topicctl/pkg/admin"
-	"github.com/segmentio/topicctl/pkg/config"
-	"github.com/segmentio/topicctl/pkg/util"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

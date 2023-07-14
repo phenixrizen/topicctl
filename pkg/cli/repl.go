@@ -12,9 +12,9 @@ import (
 
 	"github.com/c-bata/go-prompt"
 	"github.com/olekukonko/tablewriter"
+	"github.com/phenixrizen/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/groups"
 	"github.com/segmentio/kafka-go"
-	"github.com/segmentio/topicctl/pkg/admin"
-	"github.com/segmentio/topicctl/pkg/groups"
 	log "github.com/sirupsen/logrus"
 )
 

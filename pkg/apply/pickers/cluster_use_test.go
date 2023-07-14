@@ -3,7 +3,7 @@ package pickers
 import (
 	"testing"
 
-	"github.com/segmentio/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/admin"
 	"github.com/stretchr/testify/assert"
 )
 

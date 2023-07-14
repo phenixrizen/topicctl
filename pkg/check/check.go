@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/segmentio/topicctl/pkg/admin"
-	"github.com/segmentio/topicctl/pkg/config"
-	tconfig "github.com/segmentio/topicctl/pkg/config"
+	"github.com/phenixrizen/topicctl/pkg/admin"
+	"github.com/phenixrizen/topicctl/pkg/config"
+	tconfig "github.com/phenixrizen/topicctl/pkg/config"
 )
 
 // CheckConfig contains all of the context necessary to check a single topic config.
